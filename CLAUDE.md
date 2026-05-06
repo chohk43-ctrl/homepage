@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A static family homepage for a Korean family (조혜경 가족). No build tools, frameworks, or package managers — the entire application is a single `index.html` file.
+A static family homepage for a Korean family (조혜* 가족). No build tools, frameworks, or package managers — the entire application is a single `index.html` file.
 
 ## Running the Project
 
