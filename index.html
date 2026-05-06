@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>조혜경 가족 홈페이지</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap');
+
+    :root {
+      --primary: #f4845f;
+      --primary-light: #fde8df;
+      --secondary: #f7c59f;
+      --accent: #e8a87c;
+      --warm-bg: #fffaf6;
+      --card-bg: #ffffff;
+      --text-dark: #2d2d2d;
+      --text-mid: #5a5a5a;
+      --text-light: #9a9a9a;
+      --border: #f0e4d8;
+      --shadow: 0 4px 24px rgba(244,132,95,0.10);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--warm-bg);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,250,246,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--primary);
+      letter-spacing: 1px;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 40px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      color: var(--text-dark);
+    }
+    .hero-title span { color: var(--primary); }
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-tag {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 30px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      color: var(--text-mid);
+    }
+    .hero-illust {
+      flex-shrink: 0;
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      box-shadow: 0 12px 48px rgba(244,132,95,0.18);
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      padding: 0 40px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--text-dark);
+    }
+    .section-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+      margin-bottom: 4px;
+    }
+    .section-sub {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-left: auto;
+    }
+
+    /* ── FAMILY CARDS ── */
+    .family-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .family-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 32px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .family-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(244,132,95,0.18);
+    }
+    .family-emoji { font-size: 3rem; margin-bottom: 12px; }
+    .family-name { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+    .family-role {
+      font-size: 0.78rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .family-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.6; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 36px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -27px; top: 28px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--warm-bg);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .timeline-year {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+    .timeline-event { font-weight: 600; font-size: 1rem; margin-bottom: 6px; }
+    .timeline-desc { font-size: 0.85rem; color: var(--text-mid); line-height: 1.7; }
+    .timeline-emoji { float: right; font-size: 1.6rem; }
+
+    /* ── CALENDAR ── */
+    .calendar-wrap {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+    }
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .cal-month {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--text-dark);
+    }
+    .cal-nav button {
+      background: var(--primary-light);
+      border: none;
+      color: var(--primary);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .cal-nav button:hover { background: var(--primary); color: #fff; }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .cal-day-name {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-light);
+      padding: 8px 0;
+    }
+    .cal-day-name:first-child { color: #e07070; }
+    .cal-day-name:last-child { color: #7090e0; }
+    .cal-day {
+      text-align: center;
+      padding: 10px 4px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      position: relative;
+    }
+    .cal-day:hover { background: var(--primary-light); }
+    .cal-day.today {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+    }
+    .cal-day.has-event::after {
+      content: '';
+      display: block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin: 3px auto 0;
+    }
+    .cal-day.today.has-event::after { background: #fff; }
+    .cal-day.empty { cursor: default; }
+    .cal-day.sunday { color: #e07070; }
+    .cal-day.saturday { color: #7090e0; }
+    .cal-day.other-month { color: #ccc; }
+
+    .upcoming-events { margin-top: 28px; }
+    .upcoming-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+    .event-list { display: flex; flex-direction: column; gap: 10px; }
+    .event-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--warm-bg);
+      border-radius: 12px;
+      padding: 12px 16px;
+    }
+    .event-date-box {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 10px;
+      padding: 6px 12px;
+      text-align: center;
+      min-width: 52px;
+    }
+    .event-date-box .em { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; }
+    .event-date-box .dd { font-size: 1.1rem; font-weight: 700; line-height: 1; }
+    .event-info .etitle { font-weight: 600; font-size: 0.9rem; }
+    .event-info .edesc { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
+    .event-emoji-sm { margin-left: auto; font-size: 1.2rem; }
+
+    /* ── PHOTO GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .gallery-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 32px rgba(244,132,95,0.22);
+    }
+    .gallery-item:nth-child(2) { background: linear-gradient(135deg, #fce4ec, #f8bbd0); }
+    .gallery-item:nth-child(3) { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+    .gallery-item:nth-child(4) { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+    .gallery-item:nth-child(5) { background: linear-gradient(135deg, #fff8e1, #ffecb3); }
+    .gallery-item:nth-child(6) { background: linear-gradient(135deg, #f3e5f5, #e1bee7); }
+    .gallery-item .gallery-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.35));
+      color: #fff;
+      padding: 24px 14px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .add-photo {
+      border-radius: var(--radius);
+      aspect-ratio: 1;
+      border: 2px dashed var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .add-photo:hover { border-color: var(--primary); color: var(--primary); }
+    .add-photo .plus { font-size: 2rem; }
+
+    /* ── ADD EVENT MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 36px;
+      width: 420px;
+      max-width: 90vw;
+      box-shadow: 0 16px 64px rgba(0,0,0,0.15);
+    }
+    .modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 24px;
+      color: var(--text-dark);
+    }
+    .modal label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      margin-bottom: 6px;
+      margin-top: 16px;
+    }
+    .modal input, .modal textarea, .modal select {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--warm-bg);
+    }
+    .modal input:focus, .modal textarea:focus {
+      border-color: var(--primary);
+    }
+    .modal-btns {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: #e0704a; }
+    .btn-secondary { background: var(--primary-light); color: var(--primary); }
+    .btn-secondary:hover { background: var(--border); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-light);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+    }
+    footer span { color: var(--primary); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      padding: 0 40px;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      .hero { flex-direction: column-reverse; padding: 40px 20px; gap: 32px; }
+      .hero-illust { width: 180px; height: 180px; font-size: 4.5rem; }
+      .hero-title { font-size: 2rem; }
+      section { padding: 0 20px; }
+      .family-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">조혜경 가족 ♡</div>
+  <div class="nav-links">
+    <a href="#family">가족 소개</a>
+    <a href="#history">히스토리</a>
+    <a href="#schedule">일정</a>
+    <a href="#photos">사진</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">우리 가족 홈페이지</div>
+    <h1 class="hero-title">조혜경 <span>가족의</span><br>이야기</h1>
+    <p class="hero-sub">서울아산병원 DBA로 일하며<br>두 아이와 함께 매일매일을 소중히 기록합니다.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">👩‍💼 서울아산병원 DBA</span>
+      <span class="hero-tag">👨‍👩‍👧‍👦 4인 가족</span>
+      <span class="hero-tag">👧 7살 딸</span>
+      <span class="hero-tag">👦 6살 아들</span>
+    </div>
+  </div>
+  <div class="hero-illust">🏠</div>
+</div>
+
+<!-- FAMILY -->
+<section id="family">
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <h2 class="section-title">우리 가족</h2>
+    <span class="section-sub">Family Members</span>
+  </div>
+  <div class="family-grid">
+    <div class="family-card">
+      <div class="family-emoji">👩</div>
+      <div class="family-name">조혜경</div>
+      <div class="family-role">엄마 · DBA</div>
+      <div class="family-desc">서울아산병원 데이터베이스 관리자. 가족의 든든한 기둥이자 일 잘하는 엄마.</div>
+    </div>
+    <div class="family-card">
+      <div class="family-emoji">👨</div>
+      <div class="family-name">아빠</div>
+      <div class="family-role">아빠 · 가장</div>
+      <div class="family-desc">우리 가족의 행복을 위해 오늘도 열심히.</div>
+    </div>
+    <div class="family-card">
+      <div class="family-emoji">👧</div>
+      <div class="family-name">최아인</div>
+      <div class="family-role">7살 · 언니</div>
+      <div class="family-desc">씩씩하고 호기심 많은 우리 집 첫째. 동생을 잘 챙기는 다정한 언니.</div>
+    </div>
+    <div class="family-card">
+      <div class="family-emoji">👦</div>
+      <div class="family-name">최승호</div>
+      <div class="family-role">6살 · 막내</div>
+      <div class="family-desc">장난기 가득 에너지 넘치는 우리 집 막내. 웃음 제조기.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <h2 class="section-title">가족 히스토리</h2>
+    <span class="section-sub">Our Story</span>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-emoji">💍</span>
+      <div class="timeline-year">결혼</div>
+      <div class="timeline-event">두 사람이 하나가 되다</div>
+      <div class="timeline-desc">설레는 마음으로 새 출발. 우리 가족의 첫 번째 챕터.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-emoji">👶</span>
+      <div class="timeline-year">첫째 탄생 (2019)</div>
+      <div class="timeline-event">딸 태어나다</div>
+      <div class="timeline-desc">세상에서 가장 사랑스러운 7살 딸이 우리 곁에 왔습니다. 부모가 된 첫 날.</div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-emoji">🍼</span>
+      <div class="timeline-year">둘째 탄생 (2020)</div>
+      <div class="timeline-event">아들 태어나다</div>
+      <div class="timeline-desc">4인 가족이 완성된 날. 웃음이 두 배로 늘었습니다.</div>
+    </div>
+    <div class="timeline-item" id="add-history-target">
+      <span class="timeline-emoji">✏️</span>
+      <div class="timeline-year">앞으로</div>
+      <div class="timeline-event">새로운 이야기를 써 내려가는 중</div>
+      <div class="timeline-desc">매일매일이 우리 가족의 소중한 역사입니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <h2 class="section-title">가족 일정</h2>
+    <span class="section-sub">Family Calendar</span>
+  </div>
+  <div class="calendar-wrap">
+    <div class="cal-header">
+      <div class="cal-nav">
+        <button onclick="changeMonth(-1)">‹</button>
+      </div>
+      <div class="cal-month" id="cal-month-label"></div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="btn btn-primary" style="flex:none;padding:8px 18px;font-size:0.82rem;" onclick="openModal()">+ 일정 추가</button>
+        <div class="cal-nav">
+          <button onclick="changeMonth(1)">›</button>
+        </div>
+      </div>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="upcoming-events">
+      <div class="upcoming-title">다가오는 일정</div>
+      <div class="event-list" id="event-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <h2 class="section-title">가족 사진</h2>
+    <span class="section-sub">Photo Gallery</span>
+  </div>
+  <div class="gallery-grid" id="gallery-grid">
+    <div class="gallery-item">
+      🏖️
+      <div class="gallery-label">여름 바다 여행</div>
+    </div>
+    <div class="gallery-item">
+      🌸
+      <div class="gallery-label">벚꽃 나들이</div>
+    </div>
+    <div class="gallery-item">
+      🎂
+      <div class="gallery-label">첫째 생일</div>
+    </div>
+    <div class="gallery-item">
+      ⛷️
+      <div class="gallery-label">겨울 스키장</div>
+    </div>
+    <div class="gallery-item">
+      🎡
+      <div class="gallery-label">놀이공원</div>
+    </div>
+    <div class="gallery-item">
+      🍁
+      <div class="gallery-label">가을 단풍 나들이</div>
+    </div>
+    <div class="add-photo" onclick="document.getElementById('photo-input').click()">
+      <div class="plus">＋</div>
+      <div>사진 추가하기</div>
+    </div>
+  </div>
+  <input type="file" id="photo-input" accept="image/*" multiple style="display:none" onchange="addPhotos(event)" />
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Made with <span>♡</span> for our family &nbsp;·&nbsp; 조혜경 가족 홈페이지 &nbsp;·&nbsp; 2026</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <h3>📅 일정 추가</h3>
+    <label>일정 제목</label>
+    <input type="text" id="event-title" placeholder="예: 딸 피아노 발표회" />
+    <label>날짜</label>
+    <input type="date" id="event-date" />
+    <label>이모지</label>
+    <input type="text" id="event-emoji" placeholder="예: 🎹 (선택사항)" maxlength="2" />
+    <label>메모</label>
+    <textarea id="event-memo" rows="2" placeholder="짧은 메모 (선택사항)" style="resize:none;"></textarea>
+    <div class="modal-btns">
+      <button class="btn btn-secondary" onclick="closeModal()">취소</button>
+      <button class="btn btn-primary" onclick="addEvent()">저장</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── CALENDAR ──
+  let currentYear, currentMonth;
+  const today = new Date();
+
+  // Events storage
+  let events = JSON.parse(localStorage.getItem('family-events') || '[]');
+  // Default sample events
+  if (events.length === 0) {
+    const y = today.getFullYear(), m = String(today.getMonth()+1).padStart(2,'0');
+    events = [
+      { date: `${y}-${m}-15`, title: '딸 태권도 승급심사', emoji: '🥋', memo: '' },
+      { date: `${y}-${m}-22`, title: '가족 외식', emoji: '🍽️', memo: '이탈리안 레스토랑' },
+      { date: `${y}-${m}-28`, title: '아들 어린이집 발표회', emoji: '🎵', memo: '' },
+    ];
+    saveEvents();
+  }
+
+  function saveEvents() {
+    localStorage.setItem('family-events', JSON.stringify(events));
+  }
+
+  function initCalendar() {
+    currentYear = today.getFullYear();
+    currentMonth = today.getMonth();
+    renderCalendar();
+  }
+
+  function changeMonth(dir) {
+    currentMonth += dir;
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    if (currentMonth < 0)  { currentMonth = 11; currentYear--; }
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    const months = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+    document.getElementById('cal-month-label').textContent = `${currentYear}년 ${months[currentMonth]}`;
+
+    const grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+
+    const dayNames = ['일','월','화','수','목','금','토'];
+    dayNames.forEach((d,i) => {
+      const el = document.createElement('div');
+      el.className = 'cal-day-name';
+      el.textContent = d;
+      grid.appendChild(el);
+    });
+
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const lastDate = new Date(currentYear, currentMonth+1, 0).getDate();
+    const prevLast = new Date(currentYear, currentMonth, 0).getDate();
+
+    // prev month padding
+    for (let i = firstDay - 1; i >= 0; i--) {
+      const el = document.createElement('div');
+      el.className = 'cal-day other-month empty';
+      el.textContent = prevLast - i;
+      grid.appendChild(el);
+    }
+
+    for (let d = 1; d <= lastDate; d++) {
+      const el = document.createElement('div');
+      const dateStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const dow = new Date(currentYear, currentMonth, d).getDay();
+      let cls = 'cal-day';
+      if (dow === 0) cls += ' sunday';
+      if (dow === 6) cls += ' saturday';
+      if (d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) cls += ' today';
+      if (events.some(e => e.date === dateStr)) cls += ' has-event';
+      el.className = cls;
+      el.textContent = d;
+      el.onclick = () => showDayEvents(dateStr, d);
+      grid.appendChild(el);
+    }
+
+    // next month padding
+    const total = firstDay + lastDate;
+    const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+    for (let d = 1; d <= remaining; d++) {
+      const el = document.createElement('div');
+      el.className = 'cal-day other-month empty';
+      el.textContent = d;
+      grid.appendChild(el);
+    }
+
+    renderUpcoming();
+  }
+
+  function renderUpcoming() {
+    const list = document.getElementById('event-list');
+    list.innerHTML = '';
+    const ym = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}`;
+    const monthEvents = events
+      .filter(e => e.date.startsWith(ym))
+      .sort((a,b) => a.date.localeCompare(b.date));
+
+    if (monthEvents.length === 0) {
+      list.innerHTML = '<div style="color:var(--text-light);font-size:0.85rem;padding:12px 0;">이번 달 등록된 일정이 없습니다.</div>';
+      return;
+    }
+    monthEvents.forEach(ev => {
+      const day = ev.date.split('-')[2];
+      const d = new Date(ev.date);
+      const dayNames = ['일','월','화','수','목','금','토'];
+      const item = document.createElement('div');
+      item.className = 'event-item';
+      item.innerHTML = `
+        <div class="event-date-box">
+          <div class="em">${String(currentMonth+1).padStart(2,'0')}월</div>
+          <div class="dd">${day}</div>
+        </div>
+        <div class="event-info">
+          <div class="etitle">${ev.title}</div>
+          <div class="edesc">${dayNames[d.getDay()]}요일${ev.memo ? ' · ' + ev.memo : ''}</div>
+        </div>
+        <div class="event-emoji-sm">${ev.emoji || '📌'}</div>
+      `;
+      list.appendChild(item);
+    });
+  }
+
+  function showDayEvents(dateStr, day) {
+    const dayEvs = events.filter(e => e.date === dateStr);
+    if (dayEvs.length === 0) {
+      openModal(dateStr);
+      return;
+    }
+    alert(dayEvs.map(e => `${e.emoji || '📌'} ${e.title}${e.memo ? '\n   ' + e.memo : ''}`).join('\n'));
+  }
+
+  // ── MODAL ──
+  function openModal(dateStr) {
+    document.getElementById('modal-overlay').classList.add('open');
+    if (dateStr) document.getElementById('event-date').value = dateStr;
+    else {
+      const y = currentYear, m = String(currentMonth+1).padStart(2,'0'), d = String(today.getDate()).padStart(2,'0');
+      document.getElementById('event-date').value = `${y}-${m}-${d}`;
+    }
+    document.getElementById('event-title').focus();
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.getElementById('event-title').value = '';
+    document.getElementById('event-date').value = '';
+    document.getElementById('event-emoji').value = '';
+    document.getElementById('event-memo').value = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  function addEvent() {
+    const title = document.getElementById('event-title').value.trim();
+    const date  = document.getElementById('event-date').value;
+    const emoji = document.getElementById('event-emoji').value.trim();
+    const memo  = document.getElementById('event-memo').value.trim();
+    if (!title || !date) { alert('제목과 날짜를 입력해주세요.'); return; }
+    events.push({ date, title, emoji, memo });
+    saveEvents();
+    const [y, m] = date.split('-').map(Number);
+    currentYear = y; currentMonth = m - 1;
+    renderCalendar();
+    closeModal();
+  }
+
+  // ── PHOTOS ──
+  function addPhotos(e) {
+    const files = Array.from(e.target.files);
+    const grid = document.getElementById('gallery-grid');
+    const addBtn = grid.querySelector('.add-photo');
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.style.background = 'none';
+        item.style.padding = '0';
+        item.style.overflow = 'hidden';
+        const img = document.createElement('img');
+        img.src = ev.target.result;
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+        const label = document.createElement('div');
+        label.className = 'gallery-label';
+        label.textContent = file.name.replace(/\.[^.]+$/, '');
+        item.appendChild(img);
+        item.appendChild(label);
+        grid.insertBefore(item, addBtn);
+      };
+      reader.readAsDataURL(file);
+    });
+    e.target.value = '';
+  }
+
+  // ── INIT ──
+  initCalendar();
+</script>
+</body>
+</html>
